@@ -2,14 +2,14 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import {EventsRoutingModule} from './events-routing.module';
-import {EventsComponent} from './events.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {EventsListComponent} from './events-list/events-list.component';
+import { EventsFormComponent } from './events-form/events-form.component';
 
 @NgModule({
   declarations: [
-    EventsComponent,
-    EventsListComponent
+    EventsListComponent,
+    EventsFormComponent
   ],
   imports: [
     CommonModule,

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {EventsComponent} from './events.component';
 import {EventsListComponent} from './events-list/events-list.component';
+import {EventsFormComponent} from "./events-form/events-form.component";
 
 const routes: Routes = [
   {path: '', component: EventsListComponent },
-  {path: '/novo', component: EventsComponent},
-  {path: '/editar/:id', component: EventsComponent}
+  {path: 'new', component: EventsFormComponent},
+  // {path: '/edit/:id', component: EventsComponent}
 ];
 
 @NgModule({
