@@ -1,19 +1,20 @@
-<div class="container-fluid mt-3" [formGroup]="form">
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-4 mb-3 mr-lg-3" [formGroup]="form" style="background-color: lightgrey; padding: 3%; border-radius: 4px">
 
-    <div class="col-md-4 col-sm-4 col-lg-4">
-      <div class="form-group ">
+      <div class="mb-2 text-center">
+        <button type="button" class="btn no-border-focus" (click)="onIn()" [ngClass]="!outcome ? 'btn-primary' : 'btn-outline-primary'">Income</button>
+        <button type="button" class="btn no-border-focus" (click)="onOut()" [ngClass]="outcome ? 'btn-danger' : 'btn-outline-danger'">Outcome</button>
+      </div>
+
+      <div class="form-group">
         <label for="date">Date</label>
-        <input type="text" class="form-control" id="date" aria-describedby="dateHelp" placeholder="Enter date">
+        <input type="text" class="form-control" id="date" aria-describedby="dateHelp" placeholder="Enter date" formControlName="date">
       </div>
 
-      <div class="mb-2">
-        <button type="button" class="btn btn-outline-primary">Income</button>
-        <button type="button" class="btn btn-outline-danger">Outcome</button>
-      </div>
-
-      <div class="form-group ">
+      <div class="form-group">
         <label for="value">Value</label>
-        <input type="text" class="form-control" id="value" aria-describedby="valueHelp" placeholder="Enter value">
+        <input type="text" class="form-control" id="value" aria-describedby="valueHelp" placeholder="Enter value" formControlName="value">
       </div>
 
       <div class="form-group ">
@@ -21,24 +22,27 @@
         <input type="text" class="form-control" id="description" aria-describedby="descriptionHelp" placeholder="Enter description" formControlName="description">
       </div>
 
-      <div class="form-group ">
+      <div class="form-group">
         <label for="reference">Reference</label>
-        <input type="text" class="form-control" id="reference" aria-describedby="referenceHelp" placeholder="Enter reference">
+        <input type="text" class="form-control" id="reference" aria-describedby="referenceHelp" placeholder="Enter reference" formControlName="reference">
       </div>
 
-      <div class="form-group ">
+      <div class="form-group">
         <label for="notes">Notes</label>
-        <input type="text" class="form-control" id="notes" aria-describedby="notesHelp" placeholder="Enter notes">
+        <input type="text" class="form-control" id="notes" aria-describedby="notesHelp" placeholder="Enter notes" formControlName="notes">
       </div>
 
-      <div class="custom-file">
+      <div class="form-group custom-file">
         <input type="file" class="custom-file-input" id="receipt">
         <label class="custom-file-label" for="receipt">Choose file</label>
       </div>
 
-      <button type="submit" class="btn btn-primary mt-3 float-right" (click)="onSubmit()">Submit</button>
+      <button type="submit" class="btn btn-primary mt-3 float-right" (click)="onSubmit()">Save</button>
     </div>
-    <div class="col-md-9"></div>
-
+    <div class="col-md-6 col-sm-6 col-lg-6" style="background-color: beige; padding: 3%; border-radius: 4px">
+      <app-events-list></app-events-list>
+    </div>
+  </div>
 
 </div>
+

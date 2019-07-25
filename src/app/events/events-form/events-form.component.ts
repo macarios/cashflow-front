@@ -11,6 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 export class EventsFormComponent implements OnInit {
 
   form: FormGroup;
+  outcome: boolean = true;
 
   constructor(private eventsService: EventsService,
               private fb: FormBuilder,
@@ -18,18 +19,37 @@ export class EventsFormComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.route);
+    console.log(this.eventsService.list());
+
 
     this.form = this.fb.group({
       id: [null],
-      description: [null]
+      date: [null],
+      kind: [null],
+      description: [null],
+      reference: [null],
+      value: [null],
+      notes: [null]
+
      });
+
+    this.onOut();
   }
 
   onSubmit() {
-    console.log(this.form);
+    console.log(this.form.value);
     this.eventsService.create(this.form.value);
 
+  }
+
+  onIn() {
+    this.outcome = false;
+    this.form.get('kind').setValue('in');
+  }
+
+  onOut() {
+    this.outcome = true;
+    this.form.get('kind').setValue('out');
   }
 
 
