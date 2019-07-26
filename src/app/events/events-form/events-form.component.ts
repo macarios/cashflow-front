@@ -11,16 +11,14 @@ import {ActivatedRoute} from "@angular/router";
 export class EventsFormComponent implements OnInit {
 
   form: FormGroup;
-  outcome: boolean = true;
+  outcome = true;
 
   constructor(private eventsService: EventsService,
               private fb: FormBuilder,
-              private route: ActivatedRoute) { }
+              // private route: ActivatedRoute,
+              ) { }
 
   ngOnInit() {
-
-    console.log(this.eventsService.list());
-
 
     this.form = this.fb.group({
       id: [null],
@@ -39,7 +37,6 @@ export class EventsFormComponent implements OnInit {
   onSubmit() {
     console.log(this.form.value);
     this.eventsService.create(this.form.value);
-
   }
 
   onIn() {
