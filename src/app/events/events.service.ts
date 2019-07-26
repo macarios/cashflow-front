@@ -1,17 +1,26 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Input} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
-import {take} from 'rxjs/operators';
+import {delay, map, take, tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsService {
 
-  constructor(private http: HttpClient) { }
+  events: Event[];
+
+  constructor(private http: HttpClient) { this.list() }
 
   list() {
-    return this.http.get<Event[]>(`${environment.API}/events/`);
+    return this.http.get<Event[]>(`${environment.API}/events/`)
+      .pipe(
+        tap(console.log)
+      ).subscribe((events: Event[]) => this.events = events);
+  }
+
+  addEvent(event: Event) {
+    this.events.push(event);
   }
 
   create(event) {

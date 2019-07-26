@@ -1,0 +1,28 @@
+.circle::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 0;
+  top: 100%;
+  left: 50%;
+  border: 1px solid red;
+  border-width: 0 0 0 1px;
+  width: 1px;
+  height: 40px;
+}
+
+.circle {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  position: relative;
+  background-color: red;
+  top: 20px;
+}
+
+tr.last-item div.circle::before {
+  display: none;
+}
+
+
+

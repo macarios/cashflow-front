@@ -37,6 +37,7 @@ export class EventsFormComponent implements OnInit {
   onSubmit() {
     console.log(this.form.value);
     this.eventsService.create(this.form.value);
+    this.eventsService.addEvent(this.form.value);
   }
 
   onIn() {

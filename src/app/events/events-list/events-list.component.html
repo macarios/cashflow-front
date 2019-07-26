@@ -1,7 +1,7 @@
 <table class="table table-hover">
   <tbody>
-    <tr *ngFor="let event of events$ | async">
-      <th scope="row">1</th>
+    <tr *ngFor="let event of eventsList; let last = last" [class.last-item]="last">
+      <td><div class="circle"></div></td>
       <td>{{ event.date | date }}</td>
       <td>{{ event.value | currency }}</td>
       <td>{{ event.description }}</td>
