@@ -1,6 +1,6 @@
 <div class="container mt-3">
   <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-4 mr-lg-3" [formGroup]="form" style="background-color: lightgrey; padding: 3%; border-radius: 4px">
+    <div class="col-sm-12 col-md-12 col-lg-4 mr-lg-5 mb-3 shadow" [formGroup]="form" style="background-color: #dee2e6; padding: 3%; border-radius: 5px">
 
       <div class="mb-2 text-center">
         <button type="button" class="btn no-border-focus" (click)="onIn()" [ngClass]="!outcome ? 'btn-primary' : 'btn-outline-primary'">Income</button>
@@ -39,7 +39,7 @@
 
       <button type="submit" class="btn btn-primary mt-3 float-right" (click)="onSubmit()">Save</button>
     </div>
-    <div class="col-md-6 col-sm-6 col-lg-6" style="background-color: beige; padding: 3%; border-radius: 4px">
+    <div class="col-sm-12 col-md-12 col-lg-7 mb-3 shadow" style="border: 1px solid #dee2e6; padding: 3%; border-radius: 5px">
       <app-events-list></app-events-list>
     </div>
   </div>
