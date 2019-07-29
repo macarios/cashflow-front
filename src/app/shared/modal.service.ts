@@ -38,18 +38,21 @@ export class ModalService {
   }
 
   onConfirm() {
-    this.confirm$.next(true);
+    this.setConfirm(true);
     this.closeModal();
-    return this.confirm$;
   }
 
   onClose() {
-    this.confirm$.next(false);
+    this.setConfirm(false);
     this.closeModal();
   }
 
   get confirm(): Observable<boolean> {
     return this.confirm$.asObservable();
+  }
+
+  setConfirm (value: boolean)  {
+    this.confirm$.next(value);
   }
 
 }
