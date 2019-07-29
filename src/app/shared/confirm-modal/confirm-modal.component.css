@@ -1,0 +1,4 @@
+/* Allow modal receive line break character (\n) */
+.modal-body {
+  white-space: pre-line;
+}

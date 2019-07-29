@@ -1,12 +1,18 @@
+<div>a: {{ confirm }}</div>
 <table class="table table-striped">
   <tbody>
     <tr *ngFor="let event of eventsList; let last = last" [class.last-item]="last">
       <th><div class="circle" [ngClass]="event.kind == 'in' ? 'green' : 'red'"></div></th>
-      <td>{{ event.date | date }}</td>
+      <td>{{ event.date | date: 'dd/MMM' }}</td>
       <td>{{ event.value | currency }}</td>
       <td>{{ event.description }}</td>
       <td>{{ event.reference }}</td>
+      <td><fa-icon class="pointer red-icon" [icon]="['fa', 'trash-alt']" (click)="delete(event)"></fa-icon></td>
+      <!-- TODO: Check notes relevance -->
     </tr>
   </tbody>
 </table>
+
+<app-confirm-modal></app-confirm-modal>
+
 

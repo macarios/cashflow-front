@@ -31,24 +31,22 @@ export class EventsFormComponent implements OnInit {
 
      });
 
-    this.onOut();
+    this.isOut();
   }
 
   onSubmit() {
     console.log(this.form.value);
     this.eventsService.create(this.form.value);
-    this.eventsService.addEvent(this.form.value);
   }
 
-  onIn() {
+  isIn() {
     this.outcome = false;
     this.form.get('kind').setValue('in');
   }
 
-  onOut() {
+  isOut() {
     this.outcome = true;
     this.form.get('kind').setValue('out');
   }
-
 
 }

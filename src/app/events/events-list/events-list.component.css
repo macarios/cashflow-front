@@ -53,3 +53,15 @@ tr>:nth-child(1) {
 .table td, .table th {
   border: none;
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+.red-icon {
+  color: red;
+}
+
+.modal.show {
+  display: block;
+}
