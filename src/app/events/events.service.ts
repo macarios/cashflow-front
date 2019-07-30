@@ -9,15 +9,11 @@ import {Event} from './event';
 })
 export class EventsService {
 
-  events: Event[];
-
-  constructor(private http: HttpClient) { this.list(); }
+  constructor(private http: HttpClient) { }
 
   list() {
     return this.http.get<Event[]>(`${environment.API}/events/`)
-      .pipe(tap(console.log))
-      .subscribe((events: Event[]) => this.events = events);
-    // TODO: Check if it is possible to subscribe in events-list and avoid array
+      .pipe(tap(console.log));
   }
 
   create(event: Event) {
@@ -29,20 +25,11 @@ export class EventsService {
     this.http.post(`${environment.API}/events/`, event)
       .pipe(take(1))
       .subscribe(data => console.log(data));
-
-    this.events.push(event);
   }
 
   delete(id) {
-    // this.http.delete(`${environment.API}/events/${id}`).subscribe();
-    // this.events.splice(this.events.indexOf(id), 1);
+    this.http.delete(`${environment.API}/events/${id}`).subscribe();
     console.log(id);
-    console.log(this.events);
-    const filtered = this.events.filter(event => event.id !== id);
-    this.events = filtered;
-    console.log(filtered);
-    console.log(this.events);
-
   }
 
 

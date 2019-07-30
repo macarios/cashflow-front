@@ -19,20 +19,12 @@ export class ConfirmModalComponent implements OnInit {
   ngOnInit() {
     this.modalParams$ = this.modalService.modalParams;
     $('#Modal').on('show.bs.modal', () => {
-      console.log('aaaabriu');
       this.modalService.setConfirm(false);
-
-    })
+    });
   }
 
   onConfirm() {
     this.modalService.onConfirm();
   }
-
-  onClose() {
-    this.modalService.onClose();
-  }
-
-
 
 }

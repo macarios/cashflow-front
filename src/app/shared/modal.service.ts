@@ -21,14 +21,6 @@ export class ModalService {
 
   constructor() { }
 
-  setModalParams(modalParams: ModalParams) {
-    this.params$.next(modalParams);
-  }
-
-  get modalParams(): Observable<ModalParams> {
-    return this.params$.asObservable();
-  }
-
   openModal() {
     $('#Modal').modal('show');
   }
@@ -42,9 +34,12 @@ export class ModalService {
     this.closeModal();
   }
 
-  onClose() {
-    this.setConfirm(false);
-    this.closeModal();
+  get modalParams(): Observable<ModalParams> {
+    return this.params$.asObservable();
+  }
+
+  setModalParams(modalParams: ModalParams) {
+    this.params$.next(modalParams);
   }
 
   get confirm(): Observable<boolean> {

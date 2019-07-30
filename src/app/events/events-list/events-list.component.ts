@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {EventsService} from '../events.service';
 import {ModalService} from '../../shared/modal.service';
 import {Event} from '../event';
-import {distinctUntilChanged, take} from 'rxjs/operators';
+import {delay, distinctUntilChanged, switchMap, take} from 'rxjs/operators';
 import {formatCurrency, formatDate} from '@angular/common';
+import {EMPTY, Observable} from 'rxjs';
 
 @Component({
   selector: 'app-events-list',
@@ -12,24 +13,33 @@ import {formatCurrency, formatDate} from '@angular/common';
 })
 export class EventsListComponent implements OnInit {
 
+  events$: Observable<Event[]>;
+
   constructor(private eventsService: EventsService,
               private modalService: ModalService) { }
 
   ngOnInit() {
+    this.refresh();
   }
 
-  get eventsList(): Event[] {
-    return this.eventsService.events;
+  refresh() {
+    this.events$ = this.eventsService.list();
   }
+
 
   delete(event: Event) {
     this.openModal(event);
     this.modalService.confirm
       .pipe(take(1), distinctUntilChanged())
       .subscribe(
-        data => console.log('clicou em: ' + data),
-          error => console.error(error)
-          // this.eventsService.delete(event.id);
+        confirm => {
+          if (confirm) {
+            this.eventsService.delete(event.id);
+            delay(1000);
+            this.refresh();
+          }
+        },
+        error => console.error(error)
       );
   }
 
@@ -41,7 +51,6 @@ export class EventsListComponent implements OnInit {
       okLabel: 'Yes',
       cancelLabel: 'No' });
     this.modalService.openModal();
-
   }
 
   formatDate(date) {

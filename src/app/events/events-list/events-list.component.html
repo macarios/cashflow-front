@@ -1,7 +1,6 @@
-<div>a: {{ confirm }}</div>
 <table class="table table-striped">
   <tbody>
-    <tr *ngFor="let event of eventsList; let last = last" [class.last-item]="last">
+    <tr *ngFor="let event of events$ | async; let last = last" [class.last-item]="last">
       <th><div class="circle" [ngClass]="event.kind == 'in' ? 'green' : 'red'"></div></th>
       <td>{{ event.date | date: 'dd/MMM' }}</td>
       <td>{{ event.value | currency }}</td>
