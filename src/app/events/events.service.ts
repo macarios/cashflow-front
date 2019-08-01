@@ -3,11 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {take, tap} from 'rxjs/operators';
 import {Event} from './event';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsService {
+
+  updated = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { }
 
@@ -24,12 +27,20 @@ export class EventsService {
     */
     this.http.post(`${environment.API}/events/`, event)
       .pipe(take(1))
-      .subscribe(data => console.log(data));
+      .subscribe((data: Event) => {
+        this.updated.next(true);
+        console.log(`criado evento "${data.description}" com ID: ${data.id}`);
+
+      });
   }
 
   delete(id) {
-    this.http.delete(`${environment.API}/events/${id}`).subscribe();
-    console.log(id);
+    this.http.delete(`${environment.API}/events/${id}`)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.updated.next(true);
+        console.log(`evento ${id} removido`);
+      });
   }
 
 
