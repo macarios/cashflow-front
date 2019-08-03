@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {EventsService} from "../events.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {EventsService} from '../events.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-events-form',

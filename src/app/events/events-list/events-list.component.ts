@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {EventsService} from '../events.service';
 import {ModalService} from '../../shared/modal.service';
 import {Event} from '../event';
-import {distinctUntilChanged, take} from 'rxjs/operators';
+import {last, take} from 'rxjs/operators';
 import {formatCurrency, formatDate} from '@angular/common';
 import {EMPTY, Observable} from 'rxjs';
 
@@ -20,7 +20,6 @@ export class EventsListComponent implements OnInit {
              ) { }
 
   ngOnInit() {
-    this.refresh();
     this.eventsService.updated.subscribe(update => update ? this.refresh() : EMPTY);
   }
 
@@ -28,16 +27,17 @@ export class EventsListComponent implements OnInit {
     this.events$ = this.eventsService.list();
   }
 
-
+  // Open modal and delete event if confirm button is pressed
   delete(event: Event) {
     this.openModal(event);
     this.modalService.confirm
-      .pipe(take(1), distinctUntilChanged())
+      .pipe(take(1), last())
       .subscribe(confirm => confirm ? this.eventsService.delete(event.id) : EMPTY,
                  error => console.error('erro ao excluir: ' + error)
       );
   }
 
+  // Pass params$ to create modal and open it
   openModal(event: Event) {
     this.modalService.setModalParams({
       title: 'Delete',

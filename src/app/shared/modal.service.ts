@@ -21,8 +21,10 @@ export class ModalService {
 
   constructor() { }
 
+  // Open Modal window and set confirm$ value as false
   openModal() {
     $('#Modal').modal('show');
+    this.setConfirm(false);
   }
 
   private closeModal() {
@@ -34,16 +36,18 @@ export class ModalService {
     this.closeModal();
   }
 
+  // Send params$ to create modal
   get modalParams(): Observable<ModalParams> {
-    return this.params$.asObservable();
+    return this.params$;
   }
 
+  // Receive params$ to create modal
   setModalParams(modalParams: ModalParams) {
     this.params$.next(modalParams);
   }
 
   get confirm(): Observable<boolean> {
-    return this.confirm$.asObservable();
+    return this.confirm$;
   }
 
   setConfirm (value: boolean)  {

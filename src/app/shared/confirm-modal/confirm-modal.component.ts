@@ -3,8 +3,6 @@ import {ModalService} from '../modal.service';
 import {Observable} from 'rxjs';
 import {ModalParams} from './modalParams';
 
-declare var $: any;
-
 @Component({
   selector: 'app-confirm-modal',
   templateUrl: './confirm-modal.component.html',
@@ -18,9 +16,6 @@ export class ConfirmModalComponent implements OnInit {
 
   ngOnInit() {
     this.modalParams$ = this.modalService.modalParams;
-    $('#Modal').on('show.bs.modal', () => {
-      this.modalService.setConfirm(false);
-    });
   }
 
   onConfirm() {

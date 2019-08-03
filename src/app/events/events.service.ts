@@ -10,15 +10,17 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class EventsService {
 
-  updated = new BehaviorSubject<boolean>(false);
+  // Use BehaviorSubject to inform that the list was updated
+  updated = new BehaviorSubject<boolean>(true);
 
   constructor(private http: HttpClient) { }
 
   list() {
     return this.http.get<Event[]>(`${environment.API}/events/`)
-      .pipe(tap(console.log));
+      .pipe(tap(console.log)); // Could be removed.
   }
 
+  // Create an event and mark list as updated.
   create(event: Event) {
     /* const httpOptions = {headers: new HttpHeaders({
         'Content-Type':'application/json',
@@ -34,6 +36,7 @@ export class EventsService {
       });
   }
 
+  // Delete an event and mark list as updated.
   delete(id) {
     this.http.delete(`${environment.API}/events/${id}`)
       .pipe(take(1))
@@ -42,7 +45,5 @@ export class EventsService {
         console.log(`evento ${id} removido`);
       });
   }
-
-
 
 }
