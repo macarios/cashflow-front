@@ -7,6 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faTrashAlt} from '@fortawesome/free-solid-svg-icons/faTrashAlt';
+import {faPencilAlt} from '@fortawesome/free-solid-svg-icons/faPencilAlt';
 
 @NgModule({
   declarations: [
@@ -24,5 +25,6 @@ import {faTrashAlt} from '@fortawesome/free-solid-svg-icons/faTrashAlt';
 export class AppModule {
   constructor() {
     library.add(faTrashAlt);
+    library.add(faPencilAlt);
   }
 }

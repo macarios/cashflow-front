@@ -62,6 +62,10 @@ tr>:nth-child(1) {
   color: red;
 }
 
+.green-icon {
+  color: green;
+}
+
 .modal.show {
   display: block;
 }

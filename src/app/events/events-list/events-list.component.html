@@ -6,6 +6,7 @@
       <td>{{ event.value | currency }}</td>
       <td>{{ event.description }}</td>
       <td>{{ event.reference }}</td>
+      <td><fa-icon class="pointer green-icon" [icon]="['fa', 'pencil-alt']" (click)="edit(event)"></fa-icon></td>
       <td><fa-icon class="pointer red-icon" [icon]="['fa', 'trash-alt']" (click)="delete(event)"></fa-icon></td>
       <!-- TODO: Check notes relevance -->
     </tr>

@@ -27,6 +27,10 @@ export class EventsListComponent implements OnInit {
     this.events$ = this.eventsService.list();
   }
 
+  edit(event: Event) {
+    this.eventsService.event$.next(event);
+  }
+
   // Open modal and delete event if confirm button is pressed
   delete(event: Event) {
     this.openModal(event);
@@ -42,18 +46,12 @@ export class EventsListComponent implements OnInit {
     this.modalService.setModalParams({
       title: 'Delete',
       msg: `Are you sure you want to delete this event?\n
-        ${this.formatDate(event.date)} - ${event.description} - ${this.formatCurrency(event.value)}`,
+        ${this.eventsService.formatDate(event.date)} - ${event.description} - ${this.eventsService.formatCurrency(event.value)}`,
       okLabel: 'Yes',
       cancelLabel: 'No' });
     this.modalService.openModal();
   }
 
-  formatDate(date) {
-    return formatDate(date, 'dd/MMM', 'en-US');
-  }
 
-  formatCurrency(value) {
-    return formatCurrency(value, 'en-US', '$');
-  }
 
 }
