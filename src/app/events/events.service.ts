@@ -18,8 +18,8 @@ export class EventsService {
 
   constructor(private http: HttpClient) { }
 
-  list() {
-    return this.http.get<Event[]>(`${environment.API}/events/`)
+  list(page: number, size?: number) {
+    return this.http.get<Event[]>(`${environment.API}/events/?page=${page}&size=${size}`)
       .pipe(tap(console.log)); // Could be removed.
   }
 

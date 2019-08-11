@@ -1,0 +1,25 @@
+<ul class="pagination">
+  <li class="page-item" [class.disabled]="currentPage == 1">
+    <a class="page-link" href="" (click)="selectPage(1, $event)" title="First page">&laquo;</a>
+  </li>
+  <li class="page-item" [class.disabled]="currentPage == 1">
+    <a class="page-link" href="" (click)="selectPage(currentPage - 1, $event)" title="Previous page">&lsaquo;</a>
+  </li>
+  <li class="page-item disabled" *ngIf="(currentPage - range) > 1">
+    <a class="page-link" href="">...</a>
+  </li>
+
+  <li class="page-item" [class.active]="page == currentPage" *ngFor="let page of pages | async" >
+    <a class="page-link" href="" (click)="selectPage(page, $event)">{{ page }}</a>
+  </li>
+
+  <li class="page-item disabled" *ngIf="(currentPage + range) < totalPages">
+    <a class="page-link" href="">...</a>
+  </li>
+  <li class="page-item" [class.disabled]="currentPage == totalPages">
+    <a class="page-link" href="" (click)="selectPage(currentPage + 1, $event)" title="Next page">&rsaquo;</a>
+  </li>
+  <li class="page-item" [class.disabled]="currentPage == totalPages">
+    <a class="page-link" href="" (click)="selectPage(totalPages, $event)" title="Last page">&raquo;</a>
+  </li>
+</ul>

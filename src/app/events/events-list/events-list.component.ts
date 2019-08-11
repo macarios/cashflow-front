@@ -3,8 +3,8 @@ import {EventsService} from '../events.service';
 import {ModalService} from '../../shared/modal.service';
 import {Event} from '../event';
 import {last, take} from 'rxjs/operators';
-import {formatCurrency, formatDate} from '@angular/common';
 import {EMPTY, Observable} from 'rxjs';
+import {Page} from '../../shared/page';
 
 @Component({
   selector: 'app-events-list',
@@ -13,7 +13,8 @@ import {EMPTY, Observable} from 'rxjs';
 })
 export class EventsListComponent implements OnInit {
 
-  events$: Observable<Event[]>;
+  events$: Observable<Page>;
+  page: number;
 
   constructor(private eventsService: EventsService,
               private modalService: ModalService
@@ -24,7 +25,13 @@ export class EventsListComponent implements OnInit {
   }
 
   refresh() {
-    this.events$ = this.eventsService.list();
+      this.events$ = this.eventsService.list(this.page, 10);
+  }
+
+  // Receive requested page and refresh list
+  onPageChange(page) {
+    this.page = page;
+    this.refresh();
   }
 
   edit(event: Event) {
